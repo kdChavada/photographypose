@@ -1,7 +1,9 @@
+import 'package:animated_button/animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:photographypose/UI/CategoryPage.dart';
+
+import 'CategoryPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,14 +15,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery
-        .of(context)
-        .size
-        .height;
-    double w = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
@@ -73,33 +69,32 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 90.0,
           ),
+
           Expanded(
-            child: Center(
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushAndRemoveUntil(context,
-                      MaterialPageRoute(builder: (context) => Category()), (
-                          route) => false);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.orange),
-                  height: 60,
-                  width: w * 0.6,
-                  child: Center(
-                    child: Text(
-                      "Get Started",
-                      style: GoogleFonts.karla(
-                        color: Colors.white,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+            child: Container(
+              child: AnimatedButton(
+                child: Text(
+                  'Get Started',
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => App()),
+                      (route) => false);
+                },
+                color: Colors.orange,
+                shadowDegree: ShadowDegree.dark,
+                enabled: true,
               ),
             ),
+          ),
+          SizedBox(
+            height: 30.0,
           ),
         ],
       ),
